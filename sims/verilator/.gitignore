@@ -1,4 +1,5 @@
 *
+!examples/*.c
 !.gitignore
 !Makefile
 !verilator.mk

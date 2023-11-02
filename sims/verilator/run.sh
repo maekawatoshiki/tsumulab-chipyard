@@ -7,6 +7,7 @@ fi
 
 BASE=$PWD/../../
 
+printf "\033[1;32m%s\033[0m\n" "Building app..."
 $RISCV/bin/riscv64-unknown-elf-gcc \
   -I$BASE/toolchains/riscv-tools/riscv-tests/env \
   -I$BASE/toolchains/riscv-tools/riscv-tests/benchmarks/common \
@@ -20,7 +21,7 @@ $RISCV/bin/riscv64-unknown-elf-gcc \
   -fno-builtin-printf \
   -fno-tree-loop-distribute-patterns \
   -o fibo \
-  ../../examples/fibo.c \
+  examples/fibo.c \
   $BASE/toolchains/riscv-tools/riscv-tests/benchmarks/common/syscalls.c \
   $BASE/toolchains/riscv-tools/riscv-tests/benchmarks/common/crt.S \
   -nostdlib \
@@ -29,4 +30,5 @@ $RISCV/bin/riscv64-unknown-elf-gcc \
   -lgcc \
   -T $BASE/toolchains/riscv-tools/riscv-tests/benchmarks/common/test.ld
 
-make -j run-binary BINARY=fibo
+printf "\033[1;32m%s\033[0m\n" "Running simulation..."
+make -j run-binary BINARY=fibo CONFIG=SmallBoomConfig VERILATOR_FST_MODE=1
